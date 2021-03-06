@@ -6,13 +6,17 @@
 
 <div class="details mt-3">
     <div class="float-left d-inline mr-3">
-        <img src="{{user.image_url}}" alt="user-image">
+        <img class="user-img" src="{{user.image_url}}" alt="user-image">
     </div>
 
     <div>
         <h1>{{user.first_name}} {{user.last_name}}</h1>
-        <a href="/{{user.id}}/edit" class="btn btn-sm btn-primary" role="button">Edit</a>
-        <a href="/delete-user" class="btn btn-sm btn-danger" role="button">Delete</a>
+        <div>
+            <form class="inline-form" action="/users/{{user.id}}/delete" method="POST">
+                <a href="/users/{{user.id}}/edit" class="btn btn-sm btn-primary" role="button">Edit</a>
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+            </form>
+        </div>
     </div>
 </div>
 
