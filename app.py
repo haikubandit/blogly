@@ -28,10 +28,10 @@ def home_page():
 def users_page():
     """Shows list of all users"""
 
-    users = User.query.all()
+    users = User.query.order_by(User.last_name, User.first_name).all()
     return render_template('users.html', users=users)
 
-@app.route('/users/new')
+@app.route('/users/new', methods=["GET"])
 def create_user_page():
     """Show form to create new users"""
     
@@ -70,13 +70,9 @@ def edit_user_db_update(user_id):
     """Update user in db and redirect to users page"""
     user = User.query.get_or_404(user_id)
 
-    first_name = request.form["first-name"]
-    last_name = request.form["last-name"]
-    image_url = request.form["image-url"]
-
-    user.first_name = first_name
-    user.last_name = last_name
-    user.image_url = image_url
+    user.first_name = request.form["first-name"]
+    user.last_name = request.form["last-name"]
+    user.image_url = request.form["image-url"]
 
     db.session.add(user)
     db.session.commit()

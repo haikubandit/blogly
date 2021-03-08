@@ -28,3 +28,20 @@ class User(db.Model):
     def __repr__(self):
         user = self
         return f"<User id={user.id} first_name={user.first_name} last_name={user.last_name} image_url={user.image_url}>"
+
+class Post(db.Model):
+    """Employee Model"""
+
+    __tablename__ = "posts"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(150), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=utcnow())
+    user_id = db.Column(db.Text, db.ForeignKey('users.id'))
+
+    # Relationship to users table
+    user = db.relationship('User', backref='posts')
+
+    def __repr__(self):
+        return f"<Post id={self.id} title={self.title} create_at={self.create_at} user_id={self.user_id} >"
