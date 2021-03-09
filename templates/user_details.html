@@ -5,17 +5,32 @@
 {% block content %}
 
 <div class="details mt-3">
-    <div class="float-left d-inline mr-3">
+    <div class="detail-img float-left d-inline mr-3">
         <img class="user-img" src="{{user.image_url}}" alt="user-image">
     </div>
-
-    <div>
-        <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <div class="detail-content">
         <div>
-            <form class="inline-form" action="/users/{{user.id}}/delete" method="POST">
-                <a href="/users/{{user.id}}/edit" class="btn btn-sm btn-primary" role="button">Edit</a>
-                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-            </form>
+            <h1>{{user.full_name}}</h1>
+            <div>
+                <form class="inline-form" action="/users/{{user.id}}/delete" method="POST">
+                    <a href="/users/{{user.id}}/edit" class="btn btn-sm btn-primary" role="button">Edit</a>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+        <div class="user-posts mt-3">
+            <h3>Posts</h3>
+            {% if posts %}
+            <ul>
+                {% for post in posts %}
+                <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+                <small>{{ post.friendly_date }}</small>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <h4 class="text-warning">No Posts</h4>
+            {% endif %}
+            <a href="/users/{{user.id}}/posts/new" class="btn btn-md btn-primary" role="button">Add Post</a>
         </div>
     </div>
 </div>

@@ -1,3 +1,14 @@
 .user-img {
 	height: 100px;
 }
+
+.details {
+	display: flex;
+}
+
+.detail-img {
+	height: 100%;
+}
+
+.detail-content {
+}
