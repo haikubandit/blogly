@@ -12,3 +12,17 @@
 
 .detail-content {
 }
+
+.msg {
+	padding: 1em;
+}
+
+.msg.ok {
+	color: white;
+	background-color: green;
+}
+
+.msg.err {
+	color: white;
+	background-color: tomato;
+}
