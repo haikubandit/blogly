@@ -8,10 +8,10 @@ db.drop_all()
 db.create_all()
 
 
-PostTag.query.delete()
-User.query.delete()
-Post.query.delete()
-Tag.query.delete()
+# posts_tags.PostTag.query.delete()
+# posts.Post.query.delete()
+# users.User.query.delete()
+# tags.Tag.query.delete()
 
 # Make a bunch of users
 u1 = User(first_name="Matt", last_name="B")
@@ -49,7 +49,6 @@ db.session.commit()
 post2.tags.append(art)
 post3.tags.append(star_wars)
 post3.tags.append(vader)
-post4.tags.append(star_wars)
 post4.tags.append(star_wars)
 
 db.session.commit()

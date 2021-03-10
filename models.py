@@ -26,6 +26,9 @@ class User(db.Model):
                      nullable=False,
                      default='https://media.istockphoto.com/vectors/no-image-available-sign-vector-id922962354?k=6&m=922962354&s=612x612&w=0&h=_KKNzEwxMkutv-DtQ4f54yA5nc39Ojb_KPvoV__aHyU=')
 
+    # Relationship to posts table
+    posts = db.relationship('Post', backref='user',cascade="all, delete-orphan")
+
     def __repr__(self):
         user = self
         return f"<User id={user.id} first_name={user.first_name} last_name={user.last_name} image_url={user.image_url}>"
@@ -46,9 +49,6 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-
-    # Relationship to users table
-    user = db.relationship('User', backref='posts')
 
     # assignments = db.relationship('EmployeeProject', backref='employee')
 
